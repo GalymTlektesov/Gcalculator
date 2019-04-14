@@ -67,7 +67,7 @@ namespace Gcalculator
 
             if (e.KeyChar == ',')
             {
-                if (text.Text.IndexOf(',') != 1)
+                if (text.Text.IndexOf(',') != -1)
                 {
                     e.Handled = true;
                 }
@@ -116,10 +116,7 @@ namespace Gcalculator
                 textBox3.Focus();
             }
 
-            if ((e.KeyChar == (char)Keys.Back) && (textBox3.Text == ""))
-            {
-                textBox3.Focus();
-            }
+            Back_text(textBox1, textBox2, e);
         }
 
 
@@ -132,17 +129,8 @@ namespace Gcalculator
                 button_WOC2.Focus();
             }
 
-            if ((e.KeyChar == (char)Keys.Back) && (textBox2.Text == ""))
-            {
-                if (textBox3.Enabled == false)
-                {
-                    textBox3.Focus();
-                }
-                else
-                {
-                    textBox3.Focus();
-                }
-            }
+            Back_text(textBox3, textBox4,e);
+
         }
 
 
@@ -156,9 +144,14 @@ namespace Gcalculator
                 textBox4.Text = "";
             }
 
-            if ((e.KeyChar == (char)Keys.Back) && (textBox3.Text == ""))
+            Back_text(textBox2, textBox3, e);
+        }
+
+        private void Back_text(TextBox textback, TextBox text, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar == (char)Keys.Back) && (text.Text == ""))
             {
-                textBox2.Focus();
+                textback.Focus();
             }
         }
     }
